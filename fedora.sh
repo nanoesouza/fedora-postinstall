@@ -55,3 +55,4 @@ enable_fusion
 set-_hostname
 dnf_update
 flathub
+sudo_config
