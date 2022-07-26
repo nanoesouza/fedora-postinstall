@@ -1,9 +1,7 @@
-#!/bin/bash
+#!/bin/bash -x
 
 ## Variables
 host='workstation'
-fusion='https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-36.noarch.rpm'
-fusion-non='https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-36.noarch.rpm'
 
 ## DNF Settings
 dnf_tweaks(){
