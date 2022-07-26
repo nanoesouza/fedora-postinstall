@@ -13,7 +13,7 @@ dnf_tweaks(){
 }
 
 enable_fusion(){
- sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+ sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
  sudo dnf groupupdate core
 }
 
@@ -24,17 +24,21 @@ set_hostname(){
 
 dnf_update(){
   sudo dnf upgrade --refresh
-  sudo dnf check
-  sudo dnf autoremove
+  sudo dnf check -y
+  sudo dnf autoremove -y
   sudo fwupdmgr get-devices
   sudo fwupdmgr refresh --force
   sudo fwupdmgr get-updates
   sudo fwupdmgr update
-  sudo reboot now
 }
 
 flathub(){
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+}
+
+install_codecs(){
+  sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+  sudo dnf groupupdate sound-and-video
 }
 
 ## Package Install
