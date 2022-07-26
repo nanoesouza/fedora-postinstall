@@ -42,16 +42,16 @@ sys_pkg=(
 )
 
 usr_pkg=(
-  kvantum
-  latte-dock
-  steam
-  discord
-  easyeffects
-  vlc
-  deja-dup
-  thunderbird
-  qbittorrent
-  bottles
+  'kvantum'
+  'latte-dock'
+  'steam'
+  'discord'
+  'easyeffects'
+  'vlc'
+  'deja-dup'
+  'thunderbird'
+  'qbittorrent'
+  'bottles'
 )
 
 wm_pkg=(
