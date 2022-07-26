@@ -3,6 +3,12 @@
 ## Variables
 host='workstation'
 
+## Sudo Config
+sudo_config(){
+  sudo sed -i '107s/%wheel/#%wheel/' /etc/sudoers
+  sudo sed -i '110s/#%wheel/%wheel/' /etc/sudoers
+}
+
 ## DNF Settings
 dnf_tweaks(){
   echo 'fastestmirror=1' | sudo tee -a /etc/dnf/dnf.conf
