@@ -50,9 +50,9 @@ install_codecs(){
 ## Package Install
 ## Packages Config (awesome/qtile, backup restore)
 
+sudo_config
 dnf_tweaks
 enable_fusion
 set-_hostname
 dnf_update
 flathub
-sudo_config
