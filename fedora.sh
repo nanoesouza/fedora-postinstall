@@ -18,7 +18,7 @@ enable_fusion(){
 }
 
 ## General Config (user/system)
-hostname(){
+set_hostname(){
   hostnamectl set-hostname $host
 }
 
@@ -39,3 +39,9 @@ flathub(){
 
 ## Package Install
 ## Packages Config (awesome/qtile, backup restore)
+
+dnf_tweaks
+enable_fusion
+set-_hostname
+dnf_update
+flathub
