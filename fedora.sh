@@ -1,5 +1,6 @@
 #!/bin/bash -x
 
+
 ## Variables
 host='workstation'
 
@@ -56,3 +57,4 @@ enable_fusion
 set-_hostname
 dnf_update
 flathub
+install_codecs
