@@ -6,7 +6,7 @@ host='workstation'
 ## Sudo Config
 sudo_config(){
   sudo sed -i '107s/%wheel/#%wheel/' /etc/sudoers
-  sudo sed -i '110s/#%wheel/%wheel/' /etc/sudoers
+  sudo sed -i '110s/# %wheel/%wheel/' /etc/sudoers
 }
 
 ## DNF Settings
