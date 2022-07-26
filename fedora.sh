@@ -116,11 +116,11 @@ enable_fusion(){
 
 ## General Config (user/system)
 set_hostname(){
-  hostnamectl set-hostname $host
+  sudo hostnamectl set-hostname $host
 }
 
 dnf_update(){
-  sudo dnf upgrade --refresh
+  sudo dnf upgrade -y --refresh
   sudo dnf check -y
   sudo dnf autoremove -y
   sudo fwupdmgr get-devices
