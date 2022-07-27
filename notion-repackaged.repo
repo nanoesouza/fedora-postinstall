@@ -1,0 +1,5 @@
+[notion-repackaged]
+name=notion-repackage
+baseurl=https://yum.fury.io/notion-repackaged/
+enabled=1
+gpgcheck=0"

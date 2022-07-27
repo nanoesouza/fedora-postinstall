@@ -130,19 +130,8 @@ flathub(){
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 
-install_codecs(){
-  sudo dnf groupupdate -y multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
-  sudo dnf groupupdate -y sound-and-video
-}
-
-notion_enhanced(){
-  sudo echo  "[notion-repackaged]\
-              name=notion-repackaged\
-              baseurl=https://yum.fury.io/notion-repackaged/\
-              enabled=1\
-              gpgcheck=0" >> /etc/yum.repos.d/notion-repackaged.repo
-  
-  sudo dnf install notion-app-enhanced
+system_update(){
+  sudo dnf upgrade -y
 }
 
 vscode(){
@@ -153,8 +142,15 @@ vscode(){
 }
 
 ## Package Install
-system_update(){
-  sudo dnf upgrade -y
+
+install_codecs(){
+  sudo dnf groupupdate -y multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+  sudo dnf groupupdate -y sound-and-video
+}
+
+notion_enhanced(){
+  sudo cp notion-repackaged.repo /etc/yum.repos.d/
+  sudo dnf install notion-app-enhanced
 }
 
 install_usr_pkg(){
@@ -207,6 +203,16 @@ install_docker(){
   sudo dnf install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 }
 
+install_flatpak(){
+  for program in ${flatpaks[@]}; do
+    if ! flatpak list | grep -q $program ; then
+      sudo flatpak install -y $program
+    else
+      echo "INSTALLED: $program"
+    fi
+  done
+}
+
 ## Packages Config (awesome/qtile, backup restore)
 
 sudo_config
@@ -224,6 +230,7 @@ install_usr_pkg
 install_wrk_pkg
 install_wm_pkg
 install_docker
+install_flatpak
 
 ## TODO
 # Dotfiles (Clone as bare repo, set up the aliases, checkout to the config)
