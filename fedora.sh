@@ -42,16 +42,16 @@ sys_pkg=(
 )
 
 usr_pkg=(
-  'kvantum'
-  'latte-dock'
-  'steam'
-  'discord'
-  'easyeffects'
-  'vlc'
-  'deja-dup'
-  'thunderbird'
-  'qbittorrent'
-  'bottles'
+  kvantum
+  latte-dock
+  steam
+  discord
+  easyeffects
+  vlc
+  deja-dup
+  thunderbird
+  qbittorrent
+  bottles
 )
 
 wm_pkg=(
@@ -161,7 +161,7 @@ system_update(){
 
 install_usr_pkg(){
   echo "INSTALLING USER PACKAGES"
-  for program in $usr_pkg; do
+  for program in ${usr_pkg[@]}; do
     if ! rpm -qa | grep -q $program  ; then
       sudo dnf install -y $program
     else
@@ -172,7 +172,7 @@ install_usr_pkg(){
 
 install_sys_pkg(){
   echo "INSTALLING SYSTEM PACKAGES"
-  for program in $sys_pkg; do
+  for program in ${sys_pkg[@]}; do
     if ! rpm -qa | grep -q $program  ; then
       sudo dnf install -y $program
     else
@@ -183,7 +183,7 @@ install_sys_pkg(){
 
 install_wm_pkg(){
   echo "INSTALLING WINDOW MANAGER PACKAGES"
-  for program in $wm_pkg; do
+  for program in ${wm_pkg[@]}; do
     if ! rpm -qa | grep -q $program ; then
       sudo dnf install -y $program
     else
@@ -194,7 +194,7 @@ install_wm_pkg(){
 
 install_wrk_pkg(){
   echo "INSTALLING WORK PACKAGES"
-  for program in $wrk_pkg; do
+  for program in ${wrk_pkg[@]}; do
     if ! rpm -qa | grep -q $program ; then
       sudo dnf install -y $program
     else
