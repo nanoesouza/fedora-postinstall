@@ -20,7 +20,7 @@ sys_pkg=(
   mozilla-fira-fonts-common
   bat
   exa
-  shellcheck
+  ShellCheck
   fish
   zsh
   fd-find
