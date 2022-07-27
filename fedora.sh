@@ -150,7 +150,7 @@ install_codecs(){
 
 notion_enhanced(){
   sudo cp notion-repackaged.repo /etc/yum.repos.d/
-  sudo dnf install notion-app-enhanced
+  sudo dnf install -y notion-app-enhanced
 }
 
 install_usr_pkg(){
@@ -200,7 +200,7 @@ install_wrk_pkg(){
 install_docker(){
   sudo dnf -y install dnf-plugins-core
   sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
-  sudo dnf install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+  sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 }
 
 install_flatpak(){
