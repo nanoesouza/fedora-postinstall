@@ -214,7 +214,9 @@ install_flatpak(){
 }
 
 ## Packages Config (awesome/qtile, backup restore)
-
+wm_config(){
+  git clone --bare https://github.com/nanoesouza/wm.git
+}
 sudo_config
 dnf_tweaks
 enable_fusion
@@ -231,6 +233,7 @@ install_wrk_pkg
 install_wm_pkg
 install_docker
 install_flatpak
+wm_config
 
 ## TODO
 # Dotfiles (Clone as bare repo, set up the aliases, checkout to the config)
