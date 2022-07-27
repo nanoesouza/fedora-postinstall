@@ -38,7 +38,9 @@ sys_pkg=(
   neofetch
   gparted
   barrier
-
+  docker-ce-cli
+  gtk3-devel
+  pass
 )
 
 usr_pkg=(
@@ -86,11 +88,7 @@ flatpaks=(
   com.brave.Browser
   com.anydesk.Anydesk
   md.obsidian.Obsidian
-)
-
-rpms=(
-  'https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm'
-  'https://desktop.docker.com/linux/main/amd64/docker-desktop-4.10.1-x86_64.rpm?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-linux-amd64'
+  org.onlyoffice.desktopeditors
 )
 
 ## Sudo Config
@@ -203,14 +201,10 @@ install_wrk_pkg(){
   done
 }
 
-install_rpm(){
-  for program in ${rpms[@]}; do
-    if ! rpm -qa | grep -q $program ; then
-      sudo rpm -i $program
-    else
-      echo "INSTALLED: $program"
-    fi
-  done
+install_docker(){
+  sudo dnf -y install dnf-plugins-core
+  sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+  sudo dnf install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 }
 
 ## Packages Config (awesome/qtile, backup restore)
@@ -229,7 +223,7 @@ install_sys_pkg
 install_usr_pkg
 install_wrk_pkg
 install_wm_pkg
-install_rpm
+install_docker
 
 ## TODO
 # Dotfiles (Clone as bare repo, set up the aliases, checkout to the config)
