@@ -93,7 +93,6 @@ rpms=(
   'https://desktop.docker.com/linux/main/amd64/docker-desktop-4.10.1-x86_64.rpm?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-linux-amd64'
 )
 
-
 ## Sudo Config
 sudo_config(){
   sudo sed -i '110s/# %wheel/%wheel/' /etc/sudoers
@@ -161,8 +160,49 @@ system_update(){
 }
 
 install_usr_pkg(){
-  sudo dnf install -y $usr_pkg
+  echo "INSTALLING USER PACKAGES"
+  for program in $usr_pkg; do
+    if ! rpm -qa $program ; then
+      dnf install -y $program
+    else
+      echo "INSTALLED: $program"
+    fi
+  done
 }
+
+install_sys_pkg(){
+  echo "INSTALLING SYSTEM PACKAGES"
+  for program in $sys_pkg; do
+    if ! rpm -qa $program ; then
+      dnf install -y $program
+    else
+      echo "INSTALLED: $program"
+    fi
+  done
+}
+
+install_wm_pkg(){
+  echo "INSTALLING WINDOW MANAGER PACKAGES"
+  for program in $wm_pkg; do
+    if ! rpm -qa $program ; then
+      dnf install -y $program
+    else
+      echo "INSTALLED: $program"  
+    fi
+  done
+}
+
+install_wrk_pkg(){
+  echo "INSTALLING WORK PACKAGES"
+  for program in $wrk_pkg; do
+    if ! rpm -qa $program ; then
+      dnf install -y $program
+    else
+      echo "INSTALADO: $program"
+    fi
+  done
+}
+
 ## Packages Config (awesome/qtile, backup restore)
 
 sudo_config
@@ -175,7 +215,10 @@ install_codecs
 system_update
 notion_enhanced
 vscode
+install_sys_pkg
 install_usr_pkg
+install_wrk_pkg
+install_wm_pkg
 
 ## TODO
 # Dotfiles (Clone as bare repo, set up the aliases, checkout to the config)
