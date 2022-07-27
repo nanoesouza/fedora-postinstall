@@ -198,7 +198,17 @@ install_wrk_pkg(){
     if ! rpm -qa | grep -q $program ; then
       sudo dnf install -y $program
     else
-      echo "INSTALADO: $program"
+      echo "INSTALLED: $program"
+    fi
+  done
+}
+
+install_rpm(){
+  for program in ${rpms[@]}; do
+    if ! rpm -qa | grep -q $program ; then
+      sudo rpm -i $program
+    else
+      echo "INSTALLED: $program"
     fi
   done
 }
@@ -219,6 +229,7 @@ install_sys_pkg
 install_usr_pkg
 install_wrk_pkg
 install_wm_pkg
+install_rpm
 
 ## TODO
 # Dotfiles (Clone as bare repo, set up the aliases, checkout to the config)
