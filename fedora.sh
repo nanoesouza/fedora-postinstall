@@ -226,6 +226,8 @@ install_ohmyzsh(){
 ## Packages Config (awesome/qtile, backup restore)
 wm_config(){
   git clone --bare https://github.com/nanoesouza/wm.git $HOME/.cfg
+  alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+  config checkout
 }
 
 sudo_config
