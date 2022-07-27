@@ -62,7 +62,7 @@ wm_pkg=(
   dunst
   redshift
   brightnessctl
-  lxappearance-gtk3
+  lxappearance
   flameshot
   i3lock
   picom
@@ -225,7 +225,7 @@ install_ohmyzsh(){
 
 ## Packages Config (awesome/qtile, backup restore)
 wm_config(){
-  git clone --bare https://github.com/nanoesouza/wm.git
+  git clone --bare https://github.com/nanoesouza/wm.git ~/
 }
 
 sudo_config
