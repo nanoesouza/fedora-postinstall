@@ -163,7 +163,7 @@ install_usr_pkg(){
   echo "INSTALLING USER PACKAGES"
   for program in $usr_pkg; do
     if ! rpm -qa | grep -q $program  ; then
-      dnf install -y $program
+      sudo dnf install -y $program
     else
       echo "INSTALLED: $program"
     fi
@@ -174,7 +174,7 @@ install_sys_pkg(){
   echo "INSTALLING SYSTEM PACKAGES"
   for program in $sys_pkg; do
     if ! rpm -qa | grep -q $program  ; then
-      dnf install -y $program
+      sudo dnf install -y $program
     else
       echo "INSTALLED: $program"
     fi
@@ -185,7 +185,7 @@ install_wm_pkg(){
   echo "INSTALLING WINDOW MANAGER PACKAGES"
   for program in $wm_pkg; do
     if ! rpm -qa | grep -q $program ; then
-      dnf install -y $program
+      sudo dnf install -y $program
     else
       echo "INSTALLED: $program"  
     fi
@@ -196,7 +196,7 @@ install_wrk_pkg(){
   echo "INSTALLING WORK PACKAGES"
   for program in $wrk_pkg; do
     if ! rpm -qa | grep -q $program ; then
-      dnf install -y $program
+      sudo dnf install -y $program
     else
       echo "INSTALADO: $program"
     fi
