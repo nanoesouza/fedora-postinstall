@@ -111,7 +111,7 @@ enable_fusion(){
  sudo dnf groupupdate core -y
 }
 
-## General Config (user/system)
+## System configs
 set_hostname(){
   sudo hostnamectl set-hostname $host
 }
@@ -134,13 +134,6 @@ system_update(){
   sudo dnf upgrade -y
 }
 
-vscode(){
-  sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-  sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-  dnf check-update
-  sudo dnf install -y code
-}
-
 ## Package Install
 
 install_codecs(){
@@ -148,9 +141,9 @@ install_codecs(){
   sudo dnf groupupdate -y sound-and-video
 }
 
-notion_enhanced(){
+install_notion(){
   sudo cp notion-repackaged.repo /etc/yum.repos.d/
-  sudo dnf install -y notion-app-enhanced
+  sudo dnf install -y --nogpgcheck notion-app-enhanced
 }
 
 install_usr_pkg(){
@@ -213,10 +206,28 @@ install_flatpak(){
   done
 }
 
+install_vscode(){
+  sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+  sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+  dnf check-update
+  sudo dnf install -y code
+}
+
+## User Configs
+
+set_shell(){
+  chsh -s $(which zsh)
+}
+
+install_ohmyzsh(){
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
+
 ## Packages Config (awesome/qtile, backup restore)
 wm_config(){
   git clone --bare https://github.com/nanoesouza/wm.git
 }
+
 sudo_config
 dnf_tweaks
 enable_fusion
@@ -225,14 +236,16 @@ dnf_update
 flathub
 install_codecs
 system_update
-notion_enhanced
-vscode
+install_notion
+install_vscode
 install_sys_pkg
 install_usr_pkg
 install_wrk_pkg
 install_wm_pkg
 install_docker
 install_flatpak
+set_shell
+install_ohmyzsh
 wm_config
 
 ## TODO
